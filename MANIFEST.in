@@ -1,0 +1,6 @@
+include celibration\celibration_config.yaml
+include celibration\entrypoint.py
+
+recursive-include celibration\plugins *.yml
+recursive-include celibration\plugins *.yaml
+recursive-include celibration\plugins *.txt

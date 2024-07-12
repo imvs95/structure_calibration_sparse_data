@@ -1,0 +1,5 @@
+type: 'calibrationdifferencefunction'
+name: 'dynamic_time_wrapping'
+description: 'Dynamic Time Wrapping Distance with Euclidean'
+version: '1.0.0'
+function_type: "type1"

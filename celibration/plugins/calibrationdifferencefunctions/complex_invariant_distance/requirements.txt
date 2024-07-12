@@ -1,0 +1,6 @@
+matplotlib
+seaborn
+statsmodels
+sklearn
+ema-workbench
+pygments

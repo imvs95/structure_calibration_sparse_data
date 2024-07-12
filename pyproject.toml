@@ -1,0 +1,49 @@
+[tool.portray]
+modules = ["celibration"]
+
+[tool.portray.mkdocs]
+site_url = ""
+nav = [{ Home = "README.md" },
+       { Background = "docs/Simulation_Model_Short_Version.pdf" },
+       { Installation = "docs/installation.md" },
+       { Usage = "docs/example_usage.md" },
+       { Plugins = "docs/plugins.md" },
+       { Changelog = "CHANGELOG.md" }]
+markdown_extensions = ["toc",
+                       "admonition",
+                       "pymdownx.superfences",
+                       "pymdownx.highlight",
+                       "pymdownx.details",
+                       "mdx_truly_sane_lists"]
+extra_css = ["docs/css/extra.css"]
+copyright = "Copyright &copy; 2021 NPAI"
+
+[tool.portray.mkdocs.theme]
+logo = "docs/css/pol-logo.png"
+favicon = "docs/css/logo.png"
+name = "material"
+custom_dir = "docs/overrides"
+palette = [{scheme = "politie"}]
+site_description = """
+  This is the documentation for calibration_library, 
+  a generic architecture to calibrate and compare optimization and ML models.
+  """
+
+[[tool.portray.mkdocs.markdown_extensions]]
+[tool.portray.mkdocs.markdown_extensions."pymdownx.highlight"]
+linenums = true
+
+[[tool.portray.mkdocs.markdown_extensions]]
+[tool.portray.mkdocs.markdown_extensions.mdx_truly_sane_lists]
+nested_indent = 4
+truly_sane = true
+
+[[tool.portray.mkdocs.extra.social]]
+icon = "fontawesome/brands/github"
+link = "https://github.com/riwish/kalibratietechnieken"
+name = "celibration on GitHub"
+
+[[tool.portray.mkdocs.extra.social]]
+icon = "fontawesome/brands/python"
+link = ""
+name = "celibration on PyPI"

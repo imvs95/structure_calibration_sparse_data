@@ -1,0 +1,2 @@
+prod: True
+plugins_folder: './celibration/plugins'

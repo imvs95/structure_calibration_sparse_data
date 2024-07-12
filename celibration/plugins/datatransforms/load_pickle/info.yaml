@@ -1,0 +1,9 @@
+type: 'datatransform'
+name: 'load_pickle'
+description: 'Load pickle, for example, as decision variables'
+version: '1.0.0'
+
+parameters:
+  - df_in: dataframe (required)
+  - file_pkl: pickle to load
+output: ''

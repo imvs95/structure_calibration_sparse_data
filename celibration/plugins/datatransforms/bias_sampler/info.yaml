@@ -1,0 +1,9 @@
+type: 'datatransform'
+name: 'bias_sampler'
+description: 'Noise sampler for generic dataframes'
+version: '1.0.0'
+
+parameters: 
+  -df: pandas dataframe
+  -n: the number of rows to sample'
+output: ''

@@ -1,0 +1,5 @@
+type: 'calibrationdifferencefunction'
+name: 'manhattan_metrics'
+description: 'Manhattan L1 distance'
+version: '1.0.0'
+function_type: "type1"

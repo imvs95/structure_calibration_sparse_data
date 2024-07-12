@@ -1,0 +1,5 @@
+type: 'calibrationmodel'
+name: 'powell_method'
+description: 'Powell Method for optimization of timeseries with simulation'
+version: '1.0.0'
+model_type: 'optimization'

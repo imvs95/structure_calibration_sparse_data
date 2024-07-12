@@ -1,0 +1,5 @@
+type: 'calibrationdifferencefunction'
+name: 'example_calibration_difference_function'
+description: 'Example diff function'
+version: '1.0.0'
+function_type: "type1"

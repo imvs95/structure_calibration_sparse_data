@@ -1,0 +1,145 @@
+# Plan for experiments paper 3 - missing values
+
+---
+version: 1.0
+plans:
+  - plan_1:
+      name: experiments_structure_noise_powell_1_3
+      data:
+        - data_test:
+            name: true_data
+            file: ../complex_stylized_supply_chain_model_generator/data/20231208_FINAL_ComplexSimModelGraph_GT_CNHK_USA_EventTimeSeries_ManufacturingTime1.5_Runtime364.csv
+            columns_included:
+            columns_excluded:
+      transformations:
+        - transform_1:
+            name: transform_data
+            in: true_data
+            steps:
+              - step:
+                  method: post_aggregation
+                  args:
+            out: data_transformed_0
+        - transform_2:
+            name: transform_10
+            in: true_data
+            steps:
+              - step:
+                  method: noise_sampler
+                  args:
+                    - percentage: 0.10
+                    - columns_to_transform: ["quantity"]
+                    - seed: 2
+              - step:
+                  method: post_aggregation
+                  args:
+            out: data_missing_10
+        - transform_3:
+            name: transform_20
+            in: true_data
+            steps:
+              - step:
+                  method: noise_sampler
+                  args:
+                    - percentage: 0.20
+                    - columns_to_transform: ["quantity"]
+                    - seed: 2
+              - step:
+                  method: post_aggregation
+                  args:
+            out: data_missing_20
+        - transform_4:
+            name: transform_30
+            in: true_data
+            steps:
+              - step:
+                  method: noise_sampler
+                  args:
+                    - percentage: 0.30
+                    - columns_to_transform: ["quantity"]
+                    - seed: 2
+              - step:
+                  method: post_aggregation
+                  args:
+            out: data_missing_30
+        - transform_5:
+            name: load_decision_variables
+            in: true_data
+            steps:
+              - step:
+                  method: load_pickle
+                  args:
+                    - file_pkl: ../complex_stylized_supply_chain_model_generator/data/location_model_hpc_40000_cnhk_usa_airsea.pkl
+            out: dec_var
+        - transform_6:
+            name: load_network_topology_ground_truth
+            in: true_data
+            steps:
+              - step:
+                  method: load_pickle
+                  args:
+                    - file_pkl: ../complex_stylized_supply_chain_model_generator/data/Ground_Truth_Graph_Topology_DF_CNHK_USA.pkl
+            out: gt_topology
+      calibrations_global_parameters:
+        models:
+          - decision_variables: dec_var
+          - ground_truth_topology: gt_topology
+          - decision_variables_names: ["graph_structure"]
+          - epsilons: [ 1 ] #ga
+          - population_size: 100 #ga
+          - nfe: 15000 #ga/powell #only use for ga
+          - n_iterations: 100 #powell/bo #only use for powell
+          - n_draws: 20000 #abc
+          - initial_points: 100 #bo
+          - num_pool: 1 #ga
+          - seed: 26
+      calibrations_models:
+        - calibration_0:
+            name: powell_10
+            interactive: True
+            in: data_missing_10
+            evaluation_steps: 1
+            model:
+              method: powell_method
+              params:
+                - nfe: 1500
+              difference_functions:
+                - difference_function_1:
+                  - name: 'manhattan_metrics'
+                  - method: 'manhattan_metrics'
+        - calibration_1:
+            name: powell_20
+            interactive: True
+            in: data_missing_20
+            evaluation_steps: 1
+            model:
+              method: powell_method
+              params:
+                - nfe: 1500
+              difference_functions:
+                - difference_function_1:
+                  - name: 'manhattan_metrics'
+                  - method: 'manhattan_metrics'
+        - calibration_2:
+            name: powell_30
+            interactive: True
+            in: data_missing_30
+            evaluation_steps: 1
+            model:
+              method: powell_method
+              params:
+                - nfe: 1500
+                - seed: 1
+              difference_functions:
+                - difference_function_1:
+                  - name: 'manhattan_metrics'
+                  - method: 'manhattan_metrics'
+      model_comparison:
+        sorting_order_priority:
+          # See available options below, first mention string columns!
+          - Model Name
+          - Dataframe
+          - Score
+#          - Model Name
+#          - Duration
+        sorting_direction: DESC # ASC of DESC, required if sorting order priority

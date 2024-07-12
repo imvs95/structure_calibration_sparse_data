@@ -1,0 +1,5 @@
+type: 'calibrationmodel'
+name: 'bayesian_optimization'
+description: 'Bayesian optimization method for optimization of timeseries'
+version: '1.0.0'
+model_type: 'optimization'

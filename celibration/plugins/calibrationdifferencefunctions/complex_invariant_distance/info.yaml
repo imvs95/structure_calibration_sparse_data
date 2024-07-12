@@ -1,0 +1,5 @@
+type: 'calibrationdifferencefunction'
+name: 'complex_invariant_distance'
+description: 'Complexity-invariant Euclidean distance'
+version: '1.0.0'
+function_type: "type1"

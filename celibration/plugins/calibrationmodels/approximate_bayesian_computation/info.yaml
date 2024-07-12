@@ -1,0 +1,5 @@
+type: 'calibrationmodel'
+name: 'approximate_bayesian_computation'
+description: 'Approximate Bayesian Computation for Time Series'
+version: '1.0.0'
+model_type: 'optimization'

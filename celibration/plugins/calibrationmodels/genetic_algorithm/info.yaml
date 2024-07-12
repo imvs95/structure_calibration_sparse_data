@@ -1,0 +1,5 @@
+type: 'calibrationmodel'
+name: 'genetic_algorithm'
+description: 'Genetic Algorithm for optimization of timeseries'
+version: '1.0.0'
+model_type: 'optimization'

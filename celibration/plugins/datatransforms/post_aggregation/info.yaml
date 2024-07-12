@@ -1,0 +1,9 @@
+type: 'datatransform'
+name: 'post_aggregation'
+description: 'Aggregate data on actors level'
+version: '1.0.0'
+
+parameters: 
+  -df: pandas dataframe
+  -n: the number of rows to sample'
+output: ''

@@ -1,0 +1,94 @@
+# Plan for experiments paper 3 - missing values
+
+---
+version: 1.0
+plans:
+  - plan_1:
+      name: experiments_structure_noise_ga_9
+      data:
+        - data_test:
+            name: true_data
+            file: ../complex_stylized_supply_chain_model_generator/data/20231208_FINAL_ComplexSimModelGraph_GT_CNHK_USA_EventTimeSeries_ManufacturingTime1.5_Runtime364.csv
+            columns_included:
+            columns_excluded:
+      transformations:
+        - transform_1:
+            name: transform_90
+            in: true_data
+            steps:
+              - step:
+                  method: noise_sampler
+                  args:
+                    - percentage: 0.90
+                    - columns_to_transform: ["quantity"]
+                    - seed: 2
+              - step:
+                  method: post_aggregation
+                  args:
+            out: data_missing_90
+        - transform_2:
+            name: load_decision_variables
+            in: true_data
+            steps:
+              - step:
+                  method: load_pickle
+                  args:
+                    - file_pkl: ../complex_stylized_supply_chain_model_generator/data/location_model_hpc_40000_cnhk_usa_airsea.pkl
+            out: dec_var
+        - transform_3:
+            name: load_network_topology_ground_truth
+            in: true_data
+            steps:
+              - step:
+                  method: load_pickle
+                  args:
+                    - file_pkl: ../complex_stylized_supply_chain_model_generator/data/Ground_Truth_Graph_Topology_DF_CNHK_USA.pkl
+            out: gt_topology
+      calibrations_global_parameters:
+        models:
+          - decision_variables: dec_var
+          - ground_truth_topology: gt_topology
+          - decision_variables_names: ["graph_structure"]
+          - epsilons: [ 0.1 ] #ga
+          - population_size: 100 #ga
+          - nfe: 10000 #ga/powell #only use for ga
+          - n_iterations: 100 #powell/bo #only use for powell
+          - num_pool: 4 #ga
+      calibrations_models:
+        - calibration_1:
+            name: ga_90_s1
+            interactive: True
+            in: data_missing_90
+            evaluation_steps: 1
+            model:
+              method: genetic_algorithm
+              params:
+                - algorithm: "epsNSGAII"
+                - seed: 11
+              difference_functions:
+                - difference_function_1:
+                  - name: 'manhattan_metrics'
+                  - method: 'manhattan_metrics'
+        - calibration_2:
+            name: ga_90_s6
+            interactive: True
+            in: data_missing_90
+            evaluation_steps: 1
+            model:
+              method: genetic_algorithm
+              params:
+                - algorithm: "epsNSGAII"
+                - seed: 16
+              difference_functions:
+                - difference_function_1:
+                  - name: 'manhattan_metrics'
+                  - method: 'manhattan_metrics'
+      model_comparison:
+        sorting_order_priority:
+          # See available options below, first mention string columns!
+          - Model Name
+          - Dataframe
+          - Score
+#          - Model Name
+#          - Duration
+        sorting_direction: DESC # ASC of DESC, required if sorting order priority

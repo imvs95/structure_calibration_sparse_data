@@ -1,0 +1,11 @@
+[submodule "police_simulation_model"]
+	path = police_simulation_model
+	url = git@github.com:imvs95/police_simulation_model.git
+	branch = version1
+[submodule "pydsol"]
+	path = pydsol
+	url = git@github.com:imvs95/pydsol.git
+	branch = version1
+[submodule "stylized_supply_chain_model"]
+	path = stylized_supply_chain_model
+	url = git@github.com:imvs95/stylized_supply_chain_model.git

@@ -1,0 +1,58 @@
+{
+    "schema": {
+        "fields": [
+            {
+                "name": "index",
+                "type": "integer"
+            },
+            {
+                "name": "Model Name",
+                "type": "string"
+            },
+            {
+                "name": "Model Method",
+                "type": "string"
+            },
+            {
+                "name": "Score",
+                "type": "string"
+            },
+            {
+                "name": "Difference Function",
+                "type": "string"
+            },
+            {
+                "name": "Dataframe",
+                "type": "string"
+            },
+            {
+                "name": "Duration",
+                "type": "string"
+            }
+        ],
+        "primaryKey": [
+            "index"
+        ],
+        "pandas_version": "1.4.0"
+    },
+    "data": [
+        {
+            "index": 0,
+            "Model Name": "bo_80",
+            "Model Method": "bayesian_optimization",
+            "Score": 0.98,
+            "Difference Function": "manhattan_metrics",
+            "Dataframe": "data_missing_80",
+            "Duration": "264158.623 sec"
+        },
+        {
+            "index": 1,
+            "Model Name": "bo_70",
+            "Model Method": "bayesian_optimization",
+            "Score": 0.97,
+            "Difference Function": "manhattan_metrics",
+            "Dataframe": "data_missing_70",
+            "Duration": "223984.917 sec"
+        }
+    ]
+}

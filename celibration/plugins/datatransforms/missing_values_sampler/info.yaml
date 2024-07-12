@@ -1,0 +1,9 @@
+type: 'datatransform'
+name: 'missing_values_sampler'
+description: 'Missing values sampler for generic dataframes'
+version: '1.0.0'
+
+parameters: 
+  -df: pandas dataframe
+  -n: the number of rows to sample'
+output: ''

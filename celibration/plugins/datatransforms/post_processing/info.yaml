@@ -1,0 +1,9 @@
+type: 'datatransform'
+name: 'post_processing'
+description: 'Post processing for timeseries dataframes to aggregated statistics'
+version: '1.0.0'
+
+parameters: 
+  -df: pandas dataframe
+  -n: the number of rows to sample'
+output: ''

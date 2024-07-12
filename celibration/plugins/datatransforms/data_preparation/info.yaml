@@ -1,0 +1,9 @@
+type: 'datatransform'
+name: 'data_preparation'
+description: 'Data preparation for timeseries dataframes'
+version: '1.0.0'
+
+parameters: 
+  -df: pandas dataframe
+  -n: the number of rows to sample'
+output: ''

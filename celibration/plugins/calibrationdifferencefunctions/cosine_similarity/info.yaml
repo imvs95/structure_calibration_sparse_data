@@ -1,0 +1,5 @@
+type: 'calibrationdifferencefunction'
+name: 'cosine_similarity'
+description: 'Cosine Similarity'
+version: '1.0.0'
+function_type: "type1"

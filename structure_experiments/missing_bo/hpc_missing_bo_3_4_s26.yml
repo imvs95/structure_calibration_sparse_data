@@ -1,0 +1,105 @@
+# Plan for experiments paper 3 - missing values
+
+---
+version: 1.0
+plans:
+  - plan_1:
+      name: experiments_structure_missing_bo_3_4
+      data:
+        - data_test:
+            name: true_data
+            file: ../complex_stylized_supply_chain_model_generator/data/20231208_FINAL_ComplexSimModelGraph_GT_CNHK_USA_EventTimeSeries_ManufacturingTime1.5_Runtime364.csv
+            columns_included:
+            columns_excluded:
+      transformations:
+        - transform_1:
+            name: transform_30
+            in: true_data
+            steps:
+              - step:
+                  method: missing_values_sampler
+                  args:
+                    - percentage: 0.30
+                    - columns_to_transform: ["quantity"]
+                    - seed: 2
+              - step:
+                  method: post_aggregation
+                  args:
+            out: data_missing_30
+        - transform_2:
+            name: transform_40
+            in: true_data
+            steps:
+              - step:
+                  method: missing_values_sampler
+                  args:
+                    - percentage: 0.40
+                    - columns_to_transform: ["quantity"]
+                    - seed: 2
+              - step:
+                  method: post_aggregation
+                  args:
+            out: data_missing_40
+        - transform_3:
+            name: load_decision_variables
+            in: true_data
+            steps:
+              - step:
+                  method: load_pickle
+                  args:
+                    - file_pkl: ../complex_stylized_supply_chain_model_generator/data/location_model_hpc_40000_cnhk_usa_airsea.pkl
+            out: dec_var
+        - transform_4:
+            name: load_network_topology_ground_truth
+            in: true_data
+            steps:
+              - step:
+                  method: load_pickle
+                  args:
+                    - file_pkl: ../complex_stylized_supply_chain_model_generator/data/Ground_Truth_Graph_Topology_DF_CNHK_USA.pkl
+            out: gt_topology
+      calibrations_global_parameters:
+        models:
+          - decision_variables: dec_var
+          - ground_truth_topology: gt_topology
+          - decision_variables_names: ["graph_structure"]
+          - n_iterations: 3750 #bo!
+          - initial_points: 100 #bo
+          - num_pool: 5 #ga/#bo
+          - seed: 26
+      calibrations_models:
+        - calibration_1:
+            name: bo_30
+            interactive: True
+            in: data_missing_30
+            evaluation_steps: 1
+            model:
+              method: bayesian_optimization
+              params:
+                - exploration_strategy: "ei"
+              difference_functions:
+                - difference_function_1:
+                  - name: 'manhattan_metrics'
+                  - method: 'manhattan_metrics'
+        - calibration_2:
+            name: bo_40
+            interactive: True
+            in: data_missing_40
+            evaluation_steps: 1
+            model:
+              method: bayesian_optimization
+              params:
+                - exploration_strategy: "ei"
+              difference_functions:
+                - difference_function_1:
+                  - name: 'manhattan_metrics'
+                  - method: 'manhattan_metrics'
+      model_comparison:
+        sorting_order_priority:
+          # See available options below, first mention string columns!
+          - Model Name
+          - Dataframe
+          - Score
+#          - Model Name
+#          - Duration
+        sorting_direction: DESC # ASC of DESC, required if sorting order priority
