@@ -158,5 +158,6 @@ __pycache__
 .idea
 env
 reports
+thesis_results
 .ipynb_checkpoints
 */.ipynb_checkpoints/*
