@@ -9,7 +9,7 @@ For this project, we use the repository `complex_stylized_supply_chain_model_gen
 
 This repository is an extension of the ``celibration`` library, making it easy to plugin different calibration models, distance metrics and functions, and data.
 
-This repository is also part of the Ph.D. thesis of  `Isabelle M. van Schilt <https://www.tudelft.nl/staff/i.m.vanschilt/?cHash=74e749835b2a89c6c76b804683ffbbcf>`_, Delft University of Technology. The version of the code used in the Ph.D. thesis is available at doi: `10.4121/2a2a2677-4f73-4bd9-ac0d-e28099c3cc26.v1<https://doi.org/10.4121/2a2a2677-4f73-4bd9-ac0d-e28099c3cc26.v1>`_.
+This repository is also part of the Ph.D. thesis of  `Isabelle M. van Schilt <https://www.tudelft.nl/staff/i.m.vanschilt/?cHash=74e749835b2a89c6c76b804683ffbbcf>`_, Delft University of Technology. The version of the code used in the Ph.D. thesis is available at doi: `10.4121/2a2a2677-4f73-4bd9-ac0d-e28099c3cc26.v1 <https://doi.org/10.4121/2a2a2677-4f73-4bd9-ac0d-e28099c3cc26.v1>`_.
 
 Content
 =====================================================
